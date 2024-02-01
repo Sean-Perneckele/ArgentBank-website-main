@@ -4,27 +4,15 @@ import '../../designs/css/main.css'
  import { recUser } from './userSlice.js'
  import { useNavigate } from 'react-router-dom'; 
 
-
 function User () {
 
        const authState = useSelector((state) => state.auth);
        const userData = useSelector((state) => state.user);
        const dispatch = useDispatch();
        const navigate = useNavigate();
-       
-              const previousPage = sessionStorage.getItem('previousPage');
-          
-              if (previousPage === '/sing-in') {
-                console.log('Vient de la page sing-in, effectuer une action...');
-              }
-             
-              sessionStorage.setItem('previousPage', window.location.pathname);
-           
-      
+
        const nameUser = async () => {
-             
-              try {
-               
+              try {        
                 const response = await fetch('http://localhost:3001/api/v1/user/profile', {
                   method: 'POST',
                   headers: {
@@ -36,7 +24,7 @@ function User () {
                 if (response.ok) {
                   const data = await response.json();
                   dispatch(recUser({ userName:data.body.userName, firstName: data.body.firstName, lastName: data.body.lastName }));
-              //     console.log(' Nom reçues :', data);
+                  // console.log(' Nom reçues :', data);
                 } else {
                   const errorData = await response.json(); 
                   console.error('Erreur de connexion :', errorData);
@@ -45,11 +33,9 @@ function User () {
                 console.error('Erreur lors de la connexion :', error);
               }
             };
-       
             if (authState.isAuthenticated) {
               nameUser()
              }
-
              const edit =  () =>  { 
               navigate('/update')
          }
@@ -63,13 +49,11 @@ function User () {
       </div>
       <h2 className="sr-only">Accounts</h2>
     
-
       <Account titre="Argent Bank Checking (x8349)"
              montant="$2,082.79" description="Available Balance" />
 
       <Account titre="Argent Bank savings (x6712)"
              montant="$10,928.42" description="Available Balance" />
-      
 
       <Account titre="Argent Bank credit Card (x8349)"
              montant="$184.30" description="Current Balance" /> 

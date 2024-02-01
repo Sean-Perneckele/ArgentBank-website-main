@@ -2,23 +2,20 @@
 import '../designs/css/main.css'
  import { Link } from 'react-router-dom';
  import logo from '../designs/img/argentBankLogo.png'
- import { useSelector, useDispatch } from 'react-redux'; // Importer useSelector
+ import { useSelector, useDispatch } from 'react-redux'; 
  import { logout } from '../pages/singIn/Sing-inSlice';
 import { noName}  from '../pages/user/userSlice';
 
 function Header() {
 
-  // Utiliser useSelector pour accéder à l'état du reducer auth
   const authState = useSelector((state) => state.auth);
   const userData = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const handleLogout = () => {
-    // Dispatch l'action de déconnexion lorsque le lien est cliqué
+  const handleLogout = () => {  
     dispatch(logout());
     dispatch(noName())
   };
-
 
   return (
   <header>
@@ -38,7 +35,7 @@ function Header() {
           <div>
             <Link className="main-nav-item" to="/user">
               <i className="fa fa-user-circle"></i>
-                 {userData.firstName}  {userData.lastName} {/* Afficher le nom de l'utilisateur, ajustez selon vos besoins */}
+                 {userData.firstName}  {userData.lastName} 
             </Link>
             <Link className="main-nav-item" to="/"  onClick={handleLogout}>
               <i className="fa fa-sign-out"></i>

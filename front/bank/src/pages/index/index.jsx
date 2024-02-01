@@ -4,12 +4,8 @@ import '../../designs/css/main.css'
  import imgMoney from '../../designs/img/icon-money.png'
  import imgSecurity from '../../designs/img/icon-security.png'
 
-
-
-
 function Index () {
     return (
-   
         <main>
       <div className="hero">
         <section className="hero-content">
@@ -29,7 +25,6 @@ function Index () {
         contenu="  Need to talk to a representative? You can get in touch through our
             24/7 chat or through a phone call in less than 5 minutes."
           />
-       
 
         <FeaturesItem 
         image={imgMoney}
@@ -43,7 +38,6 @@ function Index () {
         contenu="  We use top of the line encryption to make sure your data and money
             is always safe."
           />
-        
       </section>
     </main>
     )

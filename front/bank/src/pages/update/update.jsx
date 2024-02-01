@@ -1,35 +1,23 @@
-import '../../designs/css/main.css'
+ import '../../designs/css/main.css'
  import InputWrapper from '../../compossant/Input Warpper.jsx';
-
  import React, { useState } from 'react';
  import {useSelector } from 'react-redux';
  import { useNavigate } from 'react-router-dom'; 
 
-
-
-
 function Update() {
 
-//   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const navigate = useNavigate(); 
-
-
   const authState = useSelector((state) => state.auth); 
-
   const handleUsernameChange = (value) => {
     setUsername(value);
   };
 
- 
-
   const handleLogin = async (e) => {
     e.preventDefault();
-  
     console.log("email", username)
-  
-    try {
-     
+
+    try { 
       const response = await fetch('http://localhost:3001/api/v1/user/profile', {
         method: 'PUT',
         headers: {
@@ -40,9 +28,7 @@ function Update() {
       });
       
       if (response.ok) {
-       
         navigate('/user')
-       
       } else {
         const errorData = await response.json(); 
         console.error('Erreur de connexion :', errorData);
@@ -52,8 +38,6 @@ function Update() {
     }
   };
   
-  
-
   return (
    
     <main className="main bg-dark">
@@ -64,21 +48,17 @@ function Update() {
         <form onSubmit={handleLogin}>
           <InputWrapper fore="username" titre="Username" type="text" id="Username" updateState={handleUsernameChange}/>
          
-
           <div className="input-remember">
             <input type="checkbox" id="remember-me" />
             <label htmlFor="remember-me">Remember me</label>
           </div>
 
-      
-            <button type="submit" className="sign-in-button" >Mise a jour</button>
-
-           
+            <button type="submit" className="sign-in-button" >Ubdate</button>
+ 
         </form>
       </section>
       </div>
-    </main>
-    
+    </main>    
   );
 }
 
